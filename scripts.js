@@ -40,6 +40,10 @@ function clearExistingTasks() {
   });
 }
 
+let todoCount = 0;
+let doingCount = 0;
+let doneCount = 0;
+
 /**
  * Renders all tasks from initial data to the UI.
  * Groups tasks by status and appends them to their respective columns.
@@ -65,7 +69,25 @@ export function addTask(task) {
     const taskElement = createTaskElement(task);
     container.appendChild(taskElement);
   }
+  if (task.status === "todo") {
+    todoCount++;
+    console.log(todoCount);
+  }
+  if (task.status === "doing") {
+    doingCount++;
+    console.log(doingCount);
+  }
+  if (task.status === "done") {
+    doneCount++;
+    console.log(doneCount);
+  }
+
+  document.getElementById("toDoText").innerText = "TODO (" + todoCount + ")";
+  document.getElementById("doingText").innerText = "DOING (" + doingCount + ")";
+  document.getElementById("doneText").innerText = "DONE (" + doneCount + ")";
 }
+
+///////////////// MODAL /////////////////
 
 /**
  * Opens the modal dialog with pre-filled task details.
