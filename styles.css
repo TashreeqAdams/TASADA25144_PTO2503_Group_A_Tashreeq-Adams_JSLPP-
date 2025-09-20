@@ -102,6 +102,7 @@ h4 {
   padding-left: 64px;
   padding-right: 65px;
   margin-bottom: 14px;
+  margin-top: 680px;
 }
 
 .side-bar-hide-btn {
@@ -180,13 +181,27 @@ input:checked + .slider:before {
   transform: translateX(19px);
 }
 
-/* Rounded sliders */
+/* Rounded slider */
 .slider.round {
   border-radius: 34px;
 }
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.show-nav-bar {
+  width: 56px;
+  height: 48px;
+  opacity: 1;
+  top: 933px;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  position: absolute;
+  background-color: #a8a4ff;
+  cursor: pointer;
+  border: solid 1px #a8a4ff;
+  display: none;
 }
 
 /* ===============

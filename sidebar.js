@@ -2,8 +2,18 @@
 
 const sideBarhide = document.getElementById("side-bar-hider-btn");
 const navBoard = document.getElementById("side-bar-div");
+const showNavBtn = document.getElementById("show-nav-bar-btn");
+
+/** Hides Nav Bar */
 
 sideBarhide.addEventListener("click", () => {
-  console.log("clicked");
   navBoard.style.display = "none";
+  showNavBtn.style.display = "block";
+});
+
+/** Shows Nav Bar */
+
+showNavBtn.addEventListener("click", () => {
+  navBoard.style.display = "block";
+  showNavBtn.style.display = "none";
 });
