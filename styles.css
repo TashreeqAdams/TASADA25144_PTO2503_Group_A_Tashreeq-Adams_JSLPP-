@@ -470,6 +470,68 @@ form select {
   cursor: pointer;
 }
 
+/* ===============
+   Mobile Mode Switch Modal Styles
+================ */
+
+.mobile-logo-modal {
+  width: 340px;
+  height: 200px;
+  opacity: 1;
+  top: 65px;
+  left: 17px;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  margin: auto;
+  display: none;
+}
+
+.mobile-logo-modal-header {
+  display: flex;
+}
+
+.mobile-logo-modal-header p {
+  font-family: Plus Jakarta Sans;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 2.4px;
+  color: var(--secondary-font-color);
+  padding-left: 65px;
+}
+
+.mobile-side-bar-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: auto;
+  background-color: var(--primary-color);
+  width: 251px;
+  height: 48px;
+  border-radius: 6px;
+}
+
+.mobile-logo-modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #ea5555;
+  transition: transform 0.2s ease-in-out, font-weight 0.2s ease-in-out;
+  transition-delay: 0.1s; /* Delay before scaling */
+  margin-left: 100px;
+}
+
+.mobile-logo-modal-close-btn:hover {
+  transform: scale(1.15);
+  font-weight: 600;
+}
+
+.mobile-logo-modal-close-btn:focus {
+  outline: none;
+}
+
 /* ========================
    Responsive Styles
 ======================== */
@@ -574,5 +636,13 @@ form select {
 
   .header-add-task-button span {
     display: none;
+  }
+
+  .header-board-name span {
+    display: none;
+  }
+
+  .header-name-div img {
+    cursor: pointer;
   }
 }

@@ -17,3 +17,13 @@ showNavBtn.addEventListener("click", () => {
   navBoard.style.display = "block";
   showNavBtn.style.display = "none";
 });
+
+// Mobile Modal
+
+const mobileLogoBtn = document.getElementById("mobile-header-logo");
+const mobileModal = document.getElementById("mobile-logo-modal");
+
+mobileLogoBtn.addEventListener("click", () => {
+  mobileModal.style.display = "block";
+  console.log("clicked");
+});

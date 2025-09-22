@@ -54,19 +54,36 @@
     <div id="layout">
       <header id="header" class="sticky-header">
         <div class="header-name-div">
-          <img
+          <img id="mobile-header-logo"
             src="./assets/favicon.svg"
             alt="logo-mobile"
             class="logo-mobile"
           />
           <h2 class="header-board-name" id="header-board-name">
-            Launch Career
+            <span>Launch Career</span>
           </h2>
           <button id="header-add-task-button" class="header-add-task-button">
             + <span>Add New Task</span>
           </button>
         </div>
       </header>
+
+    <!-- Icon button modal -->
+
+    <div class="mobile-logo-modal" id="mobile-logo-modal">
+      <div class="mobile-logo-modal-header"><p>ALL BOARDS (1)<button type="button" class="mobile-logo-modal-close-btn" id="mobile-modal-close-modal-btn">
+        &times;
+      </button></div>
+      <button class="board-btn">Launch Career</button>
+      <div class="mobile-side-bar-switch">
+        <span>☀️</span>
+        <label class="switch">
+          <input type="checkbox" id="theme-toggle">
+          <span class="slider round"></span>
+        </label>
+        <span>🌑</span>
+      </div>
+    </div>
 
       <div class="container">
         <main class="card-column-main">
