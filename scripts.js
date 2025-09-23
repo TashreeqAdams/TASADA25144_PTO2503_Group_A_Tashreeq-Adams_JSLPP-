@@ -12,6 +12,8 @@ async function fetchDataAndStore() {
     localStorage.setItem("apiData", JSON.stringify(data));
     console.log("Data fetched and stored successfully:", data);
 
+    renderTasks(data);
+
     // To retrieve the data later:
     const storedData = JSON.parse(localStorage.getItem("apiData"));
     console.log("Retrieved data from local storage:", storedData);
@@ -20,8 +22,9 @@ async function fetchDataAndStore() {
   }
 }
 
-fetchDataAndStore();
+export const storedData = JSON.parse(localStorage.getItem("apiData")) || [];
 
+fetchDataAndStore();
 /**
  * Creates a single task DOM element.
  * @param {Object} task - Task data object.
