@@ -1,3 +1,27 @@
+async function fetchDataAndStore() {
+  const apiUrl = "https://jsl-kanban-api.vercel.app/";
+
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json(); // Parse the response as JSON
+
+    // Store the data in local storage
+    localStorage.setItem("apiData", JSON.stringify(data));
+    console.log("Data fetched and stored successfully:", data);
+
+    // To retrieve the data later:
+    const storedData = JSON.parse(localStorage.getItem("apiData"));
+    console.log("Retrieved data from local storage:", storedData);
+  } catch (error) {
+    console.error("Error fetching or storing data:", error);
+  }
+}
+
+fetchDataAndStore();
+
 /**
  * Creates a single task DOM element.
  * @param {Object} task - Task data object.
