@@ -110,7 +110,7 @@ h4 {
   padding-left: 64px;
   padding-right: 65px;
   margin-bottom: 14px;
-  margin-top: 680px;
+  margin-top: 550px;
 }
 
 .side-bar-hide-btn {
@@ -484,6 +484,7 @@ form select {
   background-color: var(--primary-color);
   margin: auto;
   display: none;
+  position: absolute;
 }
 
 .mobile-logo-modal-header {

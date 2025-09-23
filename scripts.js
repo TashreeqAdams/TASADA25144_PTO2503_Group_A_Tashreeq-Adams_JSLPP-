@@ -1,5 +1,3 @@
-import { initialTasks } from "./initialData.js";
-
 /**
  * Creates a single task DOM element.
  * @param {Object} task - Task data object.
