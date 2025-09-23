@@ -1,4 +1,9 @@
+// =========================
+// Fetch API data only if localStorage is empty
+// =========================
 async function fetchDataAndStore() {
+  if (localStorage.getItem("apiData")) return; // do not overwrite existing tasks
+
   const apiUrl = "https://jsl-kanban-api.vercel.app/";
 
   try {
@@ -6,23 +11,15 @@ async function fetchDataAndStore() {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const data = await response.json(); // Parse the response as JSON
+    const data = await response.json();
 
-    // Store the data in local storage
     localStorage.setItem("apiData", JSON.stringify(data));
-    console.log("Data fetched and stored successfully:", data);
 
     renderTasks(data);
-
-    // To retrieve the data later:
-    const storedData = JSON.parse(localStorage.getItem("apiData"));
-    console.log("Retrieved data from local storage:", storedData);
   } catch (error) {
     console.error("Error fetching or storing data:", error);
   }
 }
-
-export const storedData = JSON.parse(localStorage.getItem("apiData")) || [];
 
 fetchDataAndStore();
 /**
@@ -152,3 +149,14 @@ function initTaskBoard() {
 
 // Wait until DOM is fully loaded
 document.addEventListener("DOMContentLoaded", initTaskBoard);
+
+// =========================
+// Initialize after DOM loaded
+// =========================
+document.addEventListener("DOMContentLoaded", () => {
+  initTaskBoard();
+
+  // Render any existing tasks from localStorage
+  const tasks = JSON.parse(localStorage.getItem("apiData")) || [];
+  renderTasks(tasks);
+});

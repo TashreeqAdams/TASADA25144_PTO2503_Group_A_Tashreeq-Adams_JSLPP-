@@ -1,4 +1,3 @@
-import { storedData } from "./scripts.js";
 import { renderTasks } from "./scripts.js";
 import { addTask } from "./scripts.js";
 
@@ -25,13 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Saving data to local storage
-
-if (!localStorage.getItem("apiData")) {
-  const dataToStore = JSON.stringify(storedData);
-  localStorage.setItem("apiData", dataToStore);
-}
-
 // get elements
 const modalTitle = document.getElementById("header-modal-task-title");
 const modalDescription = document.getElementById("header-modal-task-desc");
@@ -39,7 +31,7 @@ const modalStatus = document.getElementById("header-modal-task-status");
 const saveBtn = document.getElementById("header-modal-task-button");
 
 // // Load tasks from localStorage (or start with an empty array)
-// let newTasks = JSON.parse(localStorage.getItem("apiData")) || [];
+// let newTasks = JSON.parse(localStorage.getItem("apiData"));
 // if (newTasks) renderTasks(newTasks);
 
 // Save button click
