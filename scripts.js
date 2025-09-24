@@ -141,7 +141,43 @@ const modalDltBtn = document.getElementById("modal-dlt-btn");
 const array = localStorage.getItem("apiData");
 let retrievedArray = JSON.parse(array);
 
-modalSaveBtn.addEventListener("click", () => {});
+// Save button
+modalSaveBtn.addEventListener("click", () => {
+  const titleInput = document.getElementById("task-title");
+  const descInput = document.getElementById("task-desc");
+  const statusSelect = document.getElementById("task-status");
+
+  // Update the array
+  retrievedArray = retrievedArray.map((task) => {
+    if (task.id === selectedTaskId) {
+      return {
+        ...task,
+        title: titleInput.value,
+        description: descInput.value,
+        status: statusSelect.value,
+      };
+    }
+    return task;
+  });
+
+  // Save back to localStorage
+  localStorage.setItem("apiData", JSON.stringify(retrievedArray));
+
+  // Update DOM
+  const taskElement = document.getElementById(`id-${selectedTaskId}`);
+  console.log(taskElement);
+  if (taskElement) {
+    taskElement.querySelector(".task-div").textContent = titleInput.value;
+    taskElement.querySelector(".task-div").textContent = descInput.value;
+    taskElement.dataset.status = statusSelect.value;
+  }
+
+  // Close modal
+  const modal = document.getElementById("task-modal");
+  modal.close();
+
+  console.log("Task updated:", selectedTaskId);
+});
 
 modalDltBtn.addEventListener("click", () => {
   retrievedArray = retrievedArray.filter((task) => task.id !== selectedTaskId);
