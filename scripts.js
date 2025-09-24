@@ -1,23 +1,30 @@
 // =========================
 // Fetch API data only if localStorage is empty
 // =========================
-async function fetchDataAndStore() {
-  if (localStorage.getItem("apiData")) return; // do not overwrite existing tasks
+const loader = document.getElementById("loader");
 
-  const apiUrl = "https://jsl-kanban-api.vercel.app/";
+async function fetchDataAndStore() {
+  loader.style.display = "block";
 
   try {
+    if (localStorage.getItem("apiData")) {
+      return; // early exit is fine now
+    }
+
+    const apiUrl = "https://jsl-kanban-api.vercel.app/";
     const response = await fetch(apiUrl);
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
+
     const data = await response.json();
-
     localStorage.setItem("apiData", JSON.stringify(data));
-
     renderTasks(data);
   } catch (error) {
     console.error("Error fetching or storing data:", error);
+  } finally {
+    loader.style.display = "none"; // ✅ always runs, even on return
   }
 }
 
@@ -174,13 +181,6 @@ modalSaveBtn.addEventListener("click", () => {
     taskElement.textContent = titleInput.value;
     taskElement.dataset.status = statusSelect.value;
   }
-
-  let allDivs = document.getElementsByClassName("task-div");
-
-  Array.from(allDivs).forEach((item) => item.remove());
-
-  const tasks = JSON.parse(localStorage.getItem("apiData")) || [];
-  renderTasks(tasks);
 
   // Close modal
   const modal = document.getElementById("task-modal");
