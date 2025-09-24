@@ -37,8 +37,8 @@ function createTaskElement(task) {
   taskDiv.dataset.taskId = task.id;
   taskDiv.id = `id-${task.id}`;
 
-  taskDiv.addEventListener("click", () => {
-    openTaskModal(task);
+  taskDiv.addEventListener("click", (e) => {
+    openTaskModal(e.target);
   });
 
   return taskDiv;
@@ -112,13 +112,21 @@ export function addTask(task) {
 
 ///////////////// MODAL /////////////////
 
-/**
- * Opens the modal dialog with pre-filled task details.
- * @param {Object} task - The task object to display in the modal.
- */
+// Fetch from localStorage
+const fetchFromLocalStorage = () => {
+  const array = localStorage.getItem("apiData");
+  return JSON.parse(array);
+};
+
+let retrievedArray = fetchFromLocalStorage();
 let selectedTaskId = null;
 
-function openTaskModal(task) {
+// Open modal
+function openTaskModal(taskEl) {
+  let fromLocalStorage = fetchFromLocalStorage();
+  const taskId = taskEl.dataset.taskId;
+  const task = fromLocalStorage.find((tsk) => tsk.id === +taskId);
+
   const modal = document.getElementById("task-modal");
   const titleInput = document.getElementById("task-title");
   const descInput = document.getElementById("task-desc");
@@ -128,18 +136,13 @@ function openTaskModal(task) {
   descInput.value = task.description;
   statusSelect.value = task.status;
   selectedTaskId = task.id;
-  console.log(selectedTaskId);
 
   modal.showModal();
 }
 
-// Modal save and delete buttons
-// get elements
+// Modal buttons
 const modalSaveBtn = document.getElementById("modal-save-btn");
 const modalDltBtn = document.getElementById("modal-dlt-btn");
-
-const array = localStorage.getItem("apiData");
-let retrievedArray = JSON.parse(array);
 
 // Save button
 modalSaveBtn.addEventListener("click", () => {
@@ -147,7 +150,7 @@ modalSaveBtn.addEventListener("click", () => {
   const descInput = document.getElementById("task-desc");
   const statusSelect = document.getElementById("task-status");
 
-  // Update the array
+  // Update array
   retrievedArray = retrievedArray.map((task) => {
     if (task.id === selectedTaskId) {
       return {
@@ -160,15 +163,15 @@ modalSaveBtn.addEventListener("click", () => {
     return task;
   });
 
-  // Save back to localStorage
+  // Save to localStorage
   localStorage.setItem("apiData", JSON.stringify(retrievedArray));
 
-  // Update DOM
+  // Update DOM: keep structure, update only title
   const taskElement = document.getElementById(`id-${selectedTaskId}`);
-  console.log(taskElement);
   if (taskElement) {
-    taskElement.querySelector(".task-div").textContent = titleInput.value;
-    taskElement.querySelector(".task-div").textContent = descInput.value;
+    // Instead of overwriting whole textContent, preserve current structure
+    // Here your taskDiv only has textContent for title, so safe to update
+    taskElement.textContent = titleInput.value;
     taskElement.dataset.status = statusSelect.value;
   }
 
@@ -179,9 +182,11 @@ modalSaveBtn.addEventListener("click", () => {
   console.log("Task updated:", selectedTaskId);
 });
 
+// Delete button
 modalDltBtn.addEventListener("click", () => {
   retrievedArray = retrievedArray.filter((task) => task.id !== selectedTaskId);
   localStorage.setItem("apiData", JSON.stringify(retrievedArray));
+
   const taskElement = document.getElementById(`id-${selectedTaskId}`);
   if (taskElement) taskElement.remove();
 
@@ -189,9 +194,7 @@ modalDltBtn.addEventListener("click", () => {
   modal.close();
 });
 
-/**
- * Sets up modal close behavior.
- */
+// Setup modal close button
 function setupModalCloseHandler() {
   const modal = document.getElementById("task-modal");
   const closeBtn = document.getElementById("close-modal-btn");
@@ -201,23 +204,14 @@ function setupModalCloseHandler() {
   });
 }
 
-/**
- * Initializes the task board and modal handlers.
- */
+// Initialize modal and tasks
 function initTaskBoard() {
   setupModalCloseHandler();
+
+  // Render existing tasks from localStorage
+  const tasks = JSON.parse(localStorage.getItem("apiData")) || [];
+  renderTasks(tasks);
 }
 
 // Wait until DOM is fully loaded
 document.addEventListener("DOMContentLoaded", initTaskBoard);
-
-// =========================
-// Initialize after DOM loaded
-// =========================
-document.addEventListener("DOMContentLoaded", () => {
-  initTaskBoard();
-
-  // Render any existing tasks from localStorage
-  const tasks = JSON.parse(localStorage.getItem("apiData")) || [];
-  renderTasks(tasks);
-});
