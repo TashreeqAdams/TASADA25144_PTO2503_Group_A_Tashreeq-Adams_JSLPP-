@@ -22,7 +22,7 @@ showNavBtn.addEventListener("click", () => {
 
 const mobileLogoBtn = document.getElementById("mobile-header-logo");
 const mobileModal = document.getElementById("mobile-logo-modal");
-const mobileModalCloseBtn = document.getElementById("mobile-logo-modal");
+const mobileModalCloseBtn = document.getElementById("mobile-modal-close-btn");
 
 mobileLogoBtn.addEventListener("click", () => {
   mobileModal.style.display = "block";
