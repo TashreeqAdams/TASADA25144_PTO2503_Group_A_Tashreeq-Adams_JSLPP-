@@ -24,7 +24,7 @@ if (localStorage.getItem("theme") === "dark") {
   mobileThemeToggle.checked = true;
 }
 
-mobilethemeToggle.addEventListener("change", () => {
+mobileThemeToggle.addEventListener("change", () => {
   if (mobileThemeToggle.checked) {
     body.classList.add("dark-mode");
     localStorage.setItem("theme", "dark");

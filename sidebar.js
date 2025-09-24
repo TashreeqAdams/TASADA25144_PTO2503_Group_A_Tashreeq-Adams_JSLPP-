@@ -23,12 +23,15 @@ showNavBtn.addEventListener("click", () => {
 const mobileLogoBtn = document.getElementById("mobile-header-logo");
 const mobileModal = document.getElementById("mobile-logo-modal");
 const mobileModalCloseBtn = document.getElementById("mobile-modal-close-btn");
+const backdrop = document.getElementById("mobile-backdrop");
 
 mobileLogoBtn.addEventListener("click", () => {
   mobileModal.style.display = "block";
+  backdrop.style.display = "block";
   console.log("clicked");
 });
 
 mobileModalCloseBtn.addEventListener("click", () => {
   mobileModal.style.display = "none";
+  backdrop.style.display = "none";
 });
