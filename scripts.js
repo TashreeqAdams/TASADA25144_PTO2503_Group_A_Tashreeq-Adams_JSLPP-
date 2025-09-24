@@ -35,6 +35,7 @@ function createTaskElement(task) {
   taskDiv.className = "task-div";
   taskDiv.textContent = task.title;
   taskDiv.dataset.taskId = task.id;
+  taskDiv.id = `id-${task.id}`;
 
   taskDiv.addEventListener("click", () => {
     openTaskModal(task);
@@ -115,6 +116,8 @@ export function addTask(task) {
  * Opens the modal dialog with pre-filled task details.
  * @param {Object} task - The task object to display in the modal.
  */
+let selectedTaskId = null;
+
 function openTaskModal(task) {
   const modal = document.getElementById("task-modal");
   const titleInput = document.getElementById("task-title");
@@ -124,9 +127,31 @@ function openTaskModal(task) {
   titleInput.value = task.title;
   descInput.value = task.description;
   statusSelect.value = task.status;
+  selectedTaskId = task.id;
+  console.log(selectedTaskId);
 
   modal.showModal();
 }
+
+// Modal save and delete buttons
+// get elements
+const modalSaveBtn = document.getElementById("modal-save-btn");
+const modalDltBtn = document.getElementById("modal-dlt-btn");
+
+const array = localStorage.getItem("apiData");
+let retrievedArray = JSON.parse(array);
+
+modalSaveBtn.addEventListener("click", () => {});
+
+modalDltBtn.addEventListener("click", () => {
+  retrievedArray = retrievedArray.filter((task) => task.id !== selectedTaskId);
+  localStorage.setItem("apiData", JSON.stringify(retrievedArray));
+  const taskElement = document.getElementById(`id-${selectedTaskId}`);
+  if (taskElement) taskElement.remove();
+
+  const modal = document.getElementById("task-modal");
+  modal.close();
+});
 
 /**
  * Sets up modal close behavior.

@@ -70,7 +70,7 @@
 
     <!-- Icon button modal -->
 
-    <div class="mobile-logo-modal" id="mobile-logo-modal">
+    <dialog id="mobile-logo-modal">
       <div class="mobile-logo-modal-header"><p>ALL BOARDS (1)<button type="button" class="mobile-logo-modal-close-btn" id="mobile-modal-close-modal-btn">
         &times;
       </button></div>
@@ -83,7 +83,7 @@
         </label>
         <span>🌑</span>
       </div>
-    </div>
+    </dialog>
 
       <div class="container">
         <main class="card-column-main">
@@ -140,8 +140,8 @@
           <option value="done">done</option>
         </select>
       </form>
-      <div class="task-modal-buttons"><button class="save-btn">Save Changes</button>
-        <button class="dlt-btn">Delete Task</button></div>
+      <div class="task-modal-buttons"><button class="save-btn" id="modal-save-btn">Save Changes</button>
+        <button class="dlt-btn" id="modal-dlt-btn">Delete Task</button></div>
       
     </dialog>
     <!-- Modal: Adds new Task via add new task button -->

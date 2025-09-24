@@ -22,8 +22,13 @@ showNavBtn.addEventListener("click", () => {
 
 const mobileLogoBtn = document.getElementById("mobile-header-logo");
 const mobileModal = document.getElementById("mobile-logo-modal");
+const mobileModalCloseBtn = document.getElementById("mobile-logo-modal");
 
 mobileLogoBtn.addEventListener("click", () => {
   mobileModal.style.display = "block";
   console.log("clicked");
+});
+
+mobileModalCloseBtn.addEventListener("click", () => {
+  mobileModal.style.display = "none";
 });
