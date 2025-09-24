@@ -12,6 +12,20 @@
   --secondary-font-color: #828fa3;
   --primary-box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.1015); /* Subtle shadow for card depth */
   --sidebar-width: 300px; /* Sidebar fixed width */
+  --sidebar-switch-primary: #f4f7fd;
+  --hide-side-bar-primary: #635fc7;
+  --modal-header-text: #000112;
+}
+
+body.dark-mode {
+  --primary-color: #2b2c37;
+  --secondary-color: #20212c;
+  --primary-font-color: #ffffff;
+  --secondary-font-color: #828fa3;
+  --primary-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  --sidebar-switch-primary: #635fc7;
+  --hide-side-bar-primary: #fff;
+  --modal-header-text: #fff;
 }
 
 #loader {
@@ -48,14 +62,6 @@ body {
   font-size: 1rem; /* Base font size for rem scaling */
 }
 
-body.dark-mode {
-  --primary-color: #2b2c37;
-  --secondary-color: #20212c;
-  --primary-font-color: #ffffff;
-  --secondary-font-color: #828fa3;
-  --primary-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-}
-
 /* ================
    Sidebar Layout
 ================ */
@@ -76,6 +82,7 @@ body.dark-mode {
 
 #logo {
   width: 100%; /* Make logo responsive within container */
+  fill-opacity: 0;
 }
 
 .boards-nav-links-div {
@@ -100,7 +107,7 @@ h4 {
   align-items: center;
   gap: 10px; /* Space between icon and text */
   background-color: #635fc7;
-  color: var(--primary-color);
+  color: white;
   border: none;
   border-radius: 0 100px 100px 0; /* Pill shape only on right side */
   height: 48px;
@@ -123,7 +130,7 @@ h4 {
   align-items: center;
   justify-content: space-around;
   margin: auto;
-  background-color: var(--secondary-color);
+  background-color: var(--sidebar-switch-primary);
   width: 251px;
   height: 48px;
   border-radius: 6px;
@@ -140,15 +147,15 @@ h4 {
   top: 846px;
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
-  background-color: var(--secondary-color);
-  border: solid 1px var(--secondary-color);
+  background-color: var(--sidebar-switch-primary);
+  border: solid 1px var(--sidebar-switch-primary);
   font-family: Plus Jakarta Sans;
   font-weight: 700;
   font-style: Bold;
   font-size: 15px;
   line-height: 100%;
   letter-spacing: 0px;
-  color: #635fc7;
+  color: var(--hide-side-bar-primary);
   cursor: pointer;
   text-align: left;
   padding-left: 26px;
@@ -178,7 +185,7 @@ h4 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #635fc7;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -196,11 +203,11 @@ h4 {
 }
 
 input:checked + .slider {
-  background: #635fc7;
+  background: #20212c;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #635fc7;
+  box-shadow: 0 0 1px #20212c;
 }
 
 input:checked + .slider:before {
@@ -279,7 +286,7 @@ header {
   border-radius: 24px;
   background-color: #635fc7;
   border: 1px;
-  color: var(--primary-color);
+  color: white;
   cursor: pointer;
 }
 
@@ -418,6 +425,7 @@ dialog {
 .modal-header h3 {
   margin: 0;
   font-size: 1.125rem;
+  color: var(--modal-header-text);
 }
 
 .close-btn {
@@ -464,11 +472,12 @@ form select {
 
 form select {
   appearance: none; /* Remove native arrow */
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="%23828FA3" stroke-width="3" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>')
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="#fff" stroke="%23828FA3"  viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>')
     no-repeat right 0.75rem center;
 
   background-size: 1.4rem;
   padding-right: 1rem;
+  background-color: #fff;
 }
 
 .task-modal-buttons {
@@ -521,7 +530,7 @@ form select {
   border-radius: 20px;
   background-color: #635fc7;
   color: white;
-  border: solid 1px;
+  border: solid 1px #635fc7;
   font-family: Plus Jakarta Sans;
   font-weight: 700;
   font-size: 13px;
@@ -579,7 +588,7 @@ form select {
   align-items: center;
   justify-content: space-around;
   margin: auto;
-  background-color: var(--secondary-color);
+  background-color: var(--sidebar-switch-primary);
   width: 251px;
   height: 48px;
   border-radius: 6px;
