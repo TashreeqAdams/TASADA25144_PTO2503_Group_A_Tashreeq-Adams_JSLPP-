@@ -157,6 +157,9 @@ modalSaveBtn.addEventListener("click", () => {
   const descInput = document.getElementById("task-desc");
   const statusSelect = document.getElementById("task-status");
 
+  // Ensure retrievedArray is always an array
+  retrievedArray = JSON.parse(localStorage.getItem("apiData")) || [];
+
   // Update array
   retrievedArray = retrievedArray.map((task) => {
     if (task.id === selectedTaskId) {
