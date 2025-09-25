@@ -187,6 +187,9 @@ modalSaveBtn.addEventListener("click", () => {
   Array.from(allDivs).forEach((item) => item.remove());
 
   const tasks = JSON.parse(localStorage.getItem("apiData")) || [];
+  todoCount = 0;
+  doingCount = 0;
+  doneCount = 0;
   renderTasks(tasks);
   // Close modal
   const modal = document.getElementById("task-modal");
@@ -202,6 +205,16 @@ modalDltBtn.addEventListener("click", () => {
 
   const taskElement = document.getElementById(`id-${selectedTaskId}`);
   if (taskElement) taskElement.remove();
+
+  // Reset counters and re-render
+  let allDivs = document.getElementsByClassName("task-div");
+  Array.from(allDivs).forEach((item) => item.remove());
+
+  const tasks = JSON.parse(localStorage.getItem("apiData")) || [];
+  todoCount = 0;
+  doingCount = 0;
+  doneCount = 0;
+  renderTasks(tasks);
 
   const modal = document.getElementById("task-modal");
   modal.close();
