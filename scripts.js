@@ -182,6 +182,12 @@ modalSaveBtn.addEventListener("click", () => {
     taskElement.dataset.status = statusSelect.value;
   }
 
+  let allDivs = document.getElementsByClassName("task-div");
+
+  Array.from(allDivs).forEach((item) => item.remove());
+
+  const tasks = JSON.parse(localStorage.getItem("apiData")) || [];
+  renderTasks(tasks);
   // Close modal
   const modal = document.getElementById("task-modal");
   modal.close();

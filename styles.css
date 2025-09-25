@@ -82,7 +82,7 @@ body {
 
 #logo {
   width: 100%; /* Make logo responsive within container */
-  fill-opacity: 0;
+  fill-rule: nonzero;
 }
 
 .boards-nav-links-div {
