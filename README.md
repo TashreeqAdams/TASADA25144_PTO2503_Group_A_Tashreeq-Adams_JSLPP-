@@ -41,7 +41,7 @@ The project includes:
 ### Live Demo
 
 Check out the deployed project here:
-👉 Kanban Task Board on Netlify
+👉 (https://kan-ban-task-board.netlify.app/)
 
 ### How to Use This Project
 
