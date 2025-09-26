@@ -19,7 +19,7 @@
     <script defer src="./darkmode.js" type="module"></script>
     <script defer src="./apiData.js" type="module"></script>
     <script defer src="./scripts.js" type="module"></script>
-    
+
     <title>Kanban Task Management</title>
   </head>
 
@@ -27,29 +27,32 @@
     <div id="loader">
       <div class="spinner"></div>
       <p>Loading data...</p>
-  </div>
+    </div>
 
     <!-- Navigation Sidebar: Contains the logo, navigation links for boards, and theme toggle. -->
     <nav class="side-bar" id="side-bar-div">
-      <div id="side-logo-div">
-        <img id="logo" src="./assets/logo-light.svg" alt="logo-light" />
-      </div>
-
-      <div class="boards-nav-links-div" id="boards-nav-links-div">
-        <h4 id="headline-sidepanel">ALL BOARDS (1)</h4>
-        <button class="board-btn">Launch Career</button>
-          <div class="side-bar-switch">
-            <span>☀️</span>
-            <label class="switch">
-              <input type="checkbox" id="theme-toggle">
-              <span class="slider round"></span>
-            </label>
-            <span>🌑</span>
-          </div>
-            <button class="side-bar-hide-btn" id="side-bar-hider-btn">
-              <span>🚫</span>Hide Sidebar
-            </button>
+      <div>
+        <div id="side-logo-div">
+          <img id="logo" src="./assets/logo-light.svg" alt="logo-light" />
         </div>
+
+        <div class="boards-nav-links-div" id="boards-nav-links-div">
+          <h4 id="headline-sidepanel">ALL BOARDS (1)</h4>
+          <button class="board-btn">Launch Career</button>
+        </div>
+      </div>
+      <div class="side-bar-bottom">
+        <div class="side-bar-switch">
+          <span>☀️</span>
+          <label class="switch">
+            <input type="checkbox" id="theme-toggle" />
+            <span class="slider round"></span>
+          </label>
+          <span>🌑</span>
+        </div>
+        <button class="side-bar-hide-btn" id="side-bar-hider-btn">
+          <span>🚫</span>Hide Sidebar
+        </button>
       </div>
     </nav>
 
@@ -61,7 +64,8 @@
     <div id="layout">
       <header id="header" class="sticky-header">
         <div class="header-name-div">
-          <img id="mobile-header-logo"
+          <img
+            id="mobile-header-logo"
             src="./assets/favicon.svg"
             alt="logo-mobile"
             class="logo-mobile"
@@ -75,23 +79,32 @@
         </div>
       </header>
 
-    <!-- Icon button modal -->
-    <div id="mobile-backdrop"></div>
+      <!-- Icon button modal -->
+      <div id="mobile-backdrop"></div>
 
-    <div id="mobile-logo-modal">
-      <div class="mobile-logo-modal-header"><p>ALL BOARDS (1)<button type="button" class="mobile-logo-modal-close-btn" id="mobile-modal-close-btn">
-        &times;
-      </button></div>
-      <button class="board-btn">Launch Career</button>
-      <div class="mobile-side-bar-switch">
-        <span>☀️</span>
-        <label class="switch">
-          <input type="checkbox" id="mobile-theme-toggle">
-          <span class="slider round"></span>
-        </label>
-        <span>🌑</span>
+      <div id="mobile-logo-modal">
+        <div class="mobile-logo-modal-header">
+          <p>
+            ALL BOARDS (1)<button
+              type="button"
+              class="mobile-logo-modal-close-btn"
+              id="mobile-modal-close-btn"
+            >
+              &times;
+            </button>
+          </p>
+        </div>
+
+        <button class="board-btn">Launch Career</button>
+        <div class="mobile-side-bar-switch">
+          <span>☀️</span>
+          <label class="switch">
+            <input type="checkbox" id="mobile-theme-toggle" />
+            <span class="slider round"></span>
+          </label>
+          <span>🌑</span>
+        </div>
       </div>
-    </div>
 
       <div class="container">
         <main class="card-column-main">
@@ -148,9 +161,10 @@
           <option value="done">done</option>
         </select>
       </form>
-      <div class="task-modal-buttons"><button class="save-btn" id="modal-save-btn">Save Changes</button>
-        <button class="dlt-btn" id="modal-dlt-btn">Delete Task</button></div>
-      
+      <div class="task-modal-buttons">
+        <button class="save-btn" id="modal-save-btn">Save Changes</button>
+        <button class="dlt-btn" id="modal-dlt-btn">Delete Task</button>
+      </div>
     </dialog>
     <!-- Modal: Adds new Task via add new task button -->
     <dialog id="header-task-modal">
