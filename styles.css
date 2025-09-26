@@ -232,7 +232,7 @@ input:checked + .slider:before {
   width: 56px;
   height: 48px;
   opacity: 1;
-  top: 800px;
+  bottom: 50px;
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
   position: fixed;
@@ -622,15 +622,14 @@ form select {
    Responsive Styles
 ======================== */
 
-/******** Tablets ********/
 @media screen and (max-width: 1023px) {
   .side-bar {
-    display: none; /* Hide sidebar on tablets and smaller */
+    display: none;
   }
 
   .side-bar.show-sidebar {
     display: flex !important;
-    position: fixed; /* Overlay on top of page */
+    position: fixed;
     height: auto;
   }
 
@@ -663,7 +662,7 @@ form select {
   .container {
     padding: 0;
     width: 100%;
-    align-items: center; /* Center columns on smaller screens */
+    align-items: center;
   }
 
   .card-column-main {
@@ -707,13 +706,9 @@ form select {
   }
 }
 
-/******** Mobile ********/
 @media screen and (max-width: 576px) {
   .card-column-main {
-    grid-template-columns: minmax(
-      0,
-      380px
-    ); /* Stack columns in single column */
+    grid-template-columns: minmax(0, 380px);
   }
 
   .column-div {
@@ -741,6 +736,6 @@ form select {
   }
 
   .show-nav-bar {
-    display: none;
+    display: none !important;
   }
 }
