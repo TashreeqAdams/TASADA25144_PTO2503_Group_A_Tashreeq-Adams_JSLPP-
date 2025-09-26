@@ -4,18 +4,16 @@ const sideBarhide = document.getElementById("side-bar-hider-btn");
 const navBoard = document.getElementById("side-bar-div");
 const showNavBtn = document.getElementById("show-nav-bar-btn");
 
-// Hides Nav Bar
-
+// Hide sidebar and show button
 sideBarhide.addEventListener("click", () => {
-  navBoard.style.display = "none";
-  showNavBtn.style.display = "block";
+  navBoard.classList.add("hidden");
+  showNavBtn.classList.remove("hidden");
 });
 
-// Shows Nav Bar
-
+// Show sidebar and hide button
 showNavBtn.addEventListener("click", () => {
-  navBoard.style.display = "block";
-  showNavBtn.style.display = "none";
+  navBoard.classList.remove("hidden");
+  showNavBtn.classList.add("hidden");
 });
 
 // Mobile Modal

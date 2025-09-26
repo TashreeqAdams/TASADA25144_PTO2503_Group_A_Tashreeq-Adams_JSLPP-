@@ -75,6 +75,14 @@ body {
   height: 100vh;
   justify-content: space-between;
 }
+.hidden {
+  display: none;
+}
+
+.bottom-side-bar {
+  position: fixed;
+  bottom: 10px;
+}
 
 #side-logo-div {
   margin: 33px 113px 54px 34px; /* Spacing around logo */
@@ -134,14 +142,12 @@ h4 {
   padding-left: 64px;
   padding-right: 65px;
   margin-bottom: 14px;
-  position: sticky;
 }
 
 .side-bar-hide-btn {
   width: 276px;
   height: 49.745452880859375px;
   opacity: 1;
-  top: 846px;
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
   background-color: var(--sidebar-switch-primary);
@@ -160,10 +166,6 @@ h4 {
 
 .side-bar-hide-btn span {
   padding-right: 41px;
-}
-
-.side-bar-bottom {
-  margin-bottom: 16px;
 }
 
 .switch {
@@ -233,11 +235,10 @@ input:checked + .slider:before {
   top: 800px;
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
-  position: absolute;
+  position: fixed;
   background-color: #a8a4ff;
   cursor: pointer;
   border: solid 1px #a8a4ff;
-  display: none;
 }
 
 /* ===============
@@ -631,6 +632,10 @@ form select {
     display: flex !important;
     position: fixed; /* Overlay on top of page */
     height: auto;
+  }
+
+  .show-nav-bar {
+    display: none !important;
   }
 
   #side-logo-div {
