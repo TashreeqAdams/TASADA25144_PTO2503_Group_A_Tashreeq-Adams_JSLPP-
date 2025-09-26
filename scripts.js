@@ -1,34 +1,10 @@
-// =========================
-// Fetch API data only if localStorage is empty
-// =========================
-const loader = document.getElementById("loader");
+import { fetchDataAndStore } from "./apiData.js";
 
-async function fetchDataAndStore() {
-  loader.style.display = "block";
+/* variables */
+let todoCount = 0;
+let doingCount = 0;
+let doneCount = 0;
 
-  try {
-    if (localStorage.getItem("apiData")) {
-      return; // early exit is fine now
-    }
-
-    const apiUrl = "https://jsl-kanban-api.vercel.app/";
-    const response = await fetch(apiUrl);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    localStorage.setItem("apiData", JSON.stringify(data));
-    renderTasks(data);
-  } catch (error) {
-    console.error("Error fetching or storing data:", error);
-  } finally {
-    loader.style.display = "none"; // ✅ always runs, even on return
-  }
-}
-
-fetchDataAndStore();
 /**
  * Creates a single task DOM element.
  * @param {Object} task - Task data object.
@@ -60,19 +36,6 @@ function getTaskContainerByStatus(status) {
   const column = document.querySelector(`.column-div[data-status="${status}"]`);
   return column ? column.querySelector(".tasks-container") : null;
 }
-
-/**
- * Clears all existing task-divs from all task containers.
- */
-function clearExistingTasks() {
-  document.querySelectorAll(".tasks-container").forEach((container) => {
-    container.innerHTML = "";
-  });
-}
-
-let todoCount = 0;
-let doingCount = 0;
-let doneCount = 0;
 
 /**
  * Renders all tasks from initial data to the UI.
@@ -116,8 +79,6 @@ export function addTask(task) {
   document.getElementById("doingText").innerText = "DOING (" + doingCount + ")";
   document.getElementById("doneText").innerText = "DONE (" + doneCount + ")";
 }
-
-///////////////// MODAL /////////////////
 
 // Fetch from localStorage
 const fetchFromLocalStorage = () => {
@@ -179,8 +140,6 @@ modalSaveBtn.addEventListener("click", () => {
   // Update DOM: keep structure, update only title
   const taskElement = document.getElementById(`id-${selectedTaskId}`);
   if (taskElement) {
-    // Instead of overwriting whole textContent, preserve current structure
-    // Here your taskDiv only has textContent for title, so safe to update
     taskElement.textContent = titleInput.value;
     taskElement.dataset.status = statusSelect.value;
   }
@@ -194,6 +153,7 @@ modalSaveBtn.addEventListener("click", () => {
   doingCount = 0;
   doneCount = 0;
   renderTasks(tasks);
+
   // Close modal
   const modal = document.getElementById("task-modal");
   modal.close();
@@ -223,24 +183,12 @@ modalDltBtn.addEventListener("click", () => {
   modal.close();
 });
 
-// Setup modal close button
-function setupModalCloseHandler() {
-  const modal = document.getElementById("task-modal");
-  const closeBtn = document.getElementById("close-modal-btn");
-
-  closeBtn.addEventListener("click", () => {
-    modal.close();
-  });
-}
-
 // Initialize modal and tasks
-function initTaskBoard() {
-  setupModalCloseHandler();
-
+async function initTaskBoard() {
   // Render existing tasks from localStorage
-  const tasks = JSON.parse(localStorage.getItem("apiData")) || [];
-  renderTasks(tasks);
+  let tasks = fetchFromLocalStorage();
+  if (!tasks) tasks = fetchDataAndStore();
+  if (tasks) renderTasks(tasks);
 }
 
-// Wait until DOM is fully loaded
-document.addEventListener("DOMContentLoaded", initTaskBoard);
+initTaskBoard();

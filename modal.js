@@ -2,37 +2,30 @@ import { renderTasks } from "./scripts.js";
 import { addTask } from "./scripts.js";
 
 // Modal functionality for add new task button
+const taskModal = document.getElementById("header-task-modal");
+const openBtn = document.getElementById("header-add-task-button");
+const closeBtn = document.getElementById("header-close-modal-btn");
 
-document.addEventListener("DOMContentLoaded", () => {
-  const taskModal = document.getElementById("header-task-modal");
-  const openBtn = document.getElementById("header-add-task-button");
-  const closeBtn = document.getElementById("header-close-modal-btn");
+// Open modal
+openBtn.addEventListener("click", () => {
+  // Reset fields if needed
+  document.getElementById("header-modal-task-title").value = "";
+  document.getElementById("header-modal-task-desc").value = "";
+  document.getElementById("header-modal-task-status").value = "";
 
-  // Open modal
-  openBtn.addEventListener("click", () => {
-    // Reset fields if needed
-    document.getElementById("header-modal-task-title").value = "";
-    document.getElementById("header-modal-task-desc").value = "";
-    document.getElementById("header-modal-task-status").value = "";
-
-    taskModal.showModal();
-  });
-
-  // Close modal
-  closeBtn.addEventListener("click", () => {
-    taskModal.close();
-  });
+  taskModal.showModal();
 });
 
-// get elements
+// Close modal
+closeBtn.addEventListener("click", () => {
+  taskModal.close();
+});
+
+// Get elements
 const modalTitle = document.getElementById("header-modal-task-title");
 const modalDescription = document.getElementById("header-modal-task-desc");
 const modalStatus = document.getElementById("header-modal-task-status");
 const saveBtn = document.getElementById("header-modal-task-button");
-
-// // Load tasks from localStorage (or start with an empty array)
-// let newTasks = JSON.parse(localStorage.getItem("apiData"));
-// if (newTasks) renderTasks(newTasks);
 
 // Save button click
 saveBtn.addEventListener("click", () => {
@@ -54,3 +47,15 @@ saveBtn.addEventListener("click", () => {
   // Render single task
   addTask(newTask);
 });
+
+// Setup modal close button
+function setupModalCloseHandler() {
+  const modal = document.getElementById("task-modal");
+  const closeBtn = document.getElementById("close-modal-btn");
+
+  closeBtn.addEventListener("click", () => {
+    modal.close();
+  });
+}
+
+setupModalCloseHandler();

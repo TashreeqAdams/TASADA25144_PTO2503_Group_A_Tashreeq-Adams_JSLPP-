@@ -30,6 +30,7 @@ body.dark-mode {
 
 #loader {
   position: absolute;
+  display: none;
 }
 
 .spinner {
