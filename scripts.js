@@ -187,7 +187,7 @@ modalDltBtn.addEventListener("click", () => {
 async function initTaskBoard() {
   // Render existing tasks from localStorage
   let tasks = fetchFromLocalStorage();
-  if (!tasks) tasks = fetchDataAndStore();
+  if (!tasks) tasks = await fetchDataAndStore();
   if (tasks) renderTasks(tasks);
 }
 
