@@ -51,3 +51,6 @@ Check out the deployed project here:
 4. Use the "Add Task" modal to create new tasks.
 5. Edit or delete tasks using the task modal options, with changes saved automatically in local storage.
 6. Use the sidebar and mobile menu to navigate and toggle between dark/light mode.
+
+## Link to the presentation 
+👉 (https://www.loom.com/share/0d2c55ccb28d48c8bf8a2062fc48ca51?sid=0bb96ccd-b53c-4112-989f-22cb508e52e0)
