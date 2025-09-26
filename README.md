@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a Kanban task management application deployed on Netlify, designed with full functionality, responsiveness, and persistence through local storage. It integrates dynamic features such as task creation, editing, and deletion, along with sidebar interactions and a theme toggle for dark/light mode. The goal is to ensure smooth user experience across devices while maintaining clean, modular, and well-documented code.
+This project is a Kanban task management application deployed on Netlify, designed with full functionality, responsiveness, and persistence through local storage. It integrates dynamic features such as task creation, editing, and deletion, along with sidebar interactions and a theme toggle for dark/light mode.
 
 ## Technologies include
 
